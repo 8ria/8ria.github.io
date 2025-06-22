@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe as Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid #333;
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .emoji-translator {
+            background: #111111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        #loading {
+            text-align: center;
+        }
+
+        .translator-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .progress {
+            width: 100%;
+            height: 2px;
+            background: #222;
+            border-radius: 1px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #ffffff;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 1rem;
+        }
+
+        #translator {
+            display: none;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        textarea::placeholder {
+            color: #666;
+        }
+
+        .translate-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 2rem;
+        }
+
+        .translate-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+
+        .translate-btn:active {
+            transform: translateY(0);
+        }
+
+        #output {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 1rem;
+            font-size: 1.5rem;
+            min-height: 3rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .blog-content {
+            color: #ccc;
+            max-width: none;
+        }
+
+        .blog-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 3rem 0 1rem 0;
+            color: #fff;
+            border-bottom: 1px solid #222;
+            padding-bottom: 0.5rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+            color: #aaa;
+        }
+
+        .blog-content a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            transition: border-color 0.2s ease;
+        }
+
+        .blog-content a:hover {
+            border-color: #fff;
+        }
+
+        .blog-content ol, .blog-content ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: #aaa;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .blog-content pre {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .blog-content code {
+            background: #0a0a0a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .emoji {
+            font-style: normal;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .emoji-translator {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header-placeholder"></div>
+        <h1>The Infinite Loop at the Heart of the Universe: Modeling Reality as Code</h1>
+
+        <div class="blog-content">
+*What if everything you've ever known—every star, every planet, every atom in your body—is just data flowing through an incomprehensibly vast computer program? What if the universe itself is running on code, and we're about to peek under the hood?*
+
+## The Big Question That Keeps Physicists Awake at Night
+
+Imagine you're a character in a video game, but you don't know it. You think the world around you is real—the physics feel consistent, the interactions make sense, and everything follows predictable rules. Now imagine trying to prove whether your reality is "real" or simulated. This isn't just science fiction anymore; it's a serious question that some of the world's brightest minds are grappling with.
+
+The simulation hypothesis suggests that what we perceive as reality might actually be an artificial simulation, like a cosmic computer program running on hardware we can't even imagine. But here's where it gets really interesting: if we're going to explore this idea seriously, we need to think like programmers. We need to model it in code.
+
+## Universe.exe: The Ultimate Program
+
+Let's start by imagining what the universe might look like as a computer program. Before we dive into complex quantum mechanics or relativity, let's build our understanding from the ground up.
+
+### The Basic Framework
+
+```pseudocode
+// The Universe Simulation - Version 1.0
+// Warning: This program never terminates
+
+PROGRAM UniverseSimulation
+BEGIN
+    // Initialize the cosmic constants
+    SPEED_OF_LIGHT = 299792458  // meters per second
+    PLANCK_CONSTANT = 6.626e-34 // Joule-seconds
+    GRAVITATIONAL_CONSTANT = 6.674e-11
+    
+    // Create the fundamental data structures
+    CREATE space_time_grid[INFINITE][INFINITE][INFINITE][TIME]
+    CREATE particle_registry[]
+    CREATE force_field_manager
+    CREATE quantum_state_database
+    
+    // The main universe loop - this is where the magic happens
+    current_time = 0
+    WHILE (universe_exists) DO
+        // Step 1: Update all particles
+        FOR each particle IN particle_registry DO
+            calculate_forces_on(particle)
+            update_position(particle, current_time)
+            update_momentum(particle)
+            check_quantum_state(particle)
+        END FOR
+        
+        // Step 2: Update fields (electromagnetic, gravitational, etc.)
+        update_electromagnetic_field()
+        update_gravitational_field()
+        update_quantum_fields()
+        
+        // Step 3: Process interactions
+        handle_particle_collisions()
+        handle_quantum_interactions()
+        handle_relativistic_effects()
+        
+        // Step 4: Advance time by one Planck unit
+        current_time = current_time + PLANCK_TIME
+        
+        // Step 5: Check for observer measurements
+        IF observer_makes_measurement THEN
+            collapse_wave_function()
+        END IF
+    END WHILE
+END PROGRAM
+```
+
+### What This Code Tells Us
+
+Even this simplified version reveals something profound: the universe, if it's a simulation, would need to be running an infinite loop. Every moment of time, every interaction between particles, every quantum measurement—it all happens inside this never-ending cycle.
+
+But here's the first thing that breaks: **computational limits**.
+
+## The First Crack in the Code: The Processing Problem
+
+Let's think about what our universe simulation is trying to do. Consider just the particles in a single grain of sand:
+
+```pseudocode
+// Calculating the computational requirements
+FUNCTION calculate_universe_complexity()
+BEGIN
+    particles_in_grain_of_sand = 10^18  // That's a quintillion particles
+    grains_of_sand_on_earth = 7.5e18   // Another mind-boggling number
+    particles_on_earth = particles_in_grain_of_sand * grains_of_sand_on_earth
+    
+    // And Earth is just one tiny spec in the observable universe
+    stars_in_observable_universe = 10^24
+    // Each star potentially has planets, each with their own particles...
+    
+    PRINT "Total particles to simulate: " + (practically_infinite)
+    PRINT "Calculations per second: " + (beyond_imagination)
+    PRINT "Required processing power: " + (impossible_with_known_physics)
+END FUNCTION
+```
+
+The numbers are staggering. If we had to simulate every particle interaction in real-time, we'd need a computer more powerful than the universe itself. This is our first major bug in the simulation hypothesis.
+
+**But wait—maybe the universe is smarter than we think.**
+
+## The Optimization Patch: Lazy Loading Reality
+
+What if the universe doesn't actually compute everything all the time? What if it uses the same tricks that video game programmers use to create convincing worlds without infinite processing power?
+
+### The Observer Pattern
+
+```pseudocode
+// Universe Optimization System - The Observer Patch
+CLASS UniverseRenderer
+BEGIN
+    observed_regions = []
+    unobserved_regions = []
+    
+    FUNCTION render_reality(location, observer)
+    BEGIN
+        IF location IN observed_regions THEN
+            // Full quantum resolution required
+            render_with_full_quantum_detail(location)
+            update_all_particle_states(location)
+            maintain_perfect_physics(location)
+        ELSE
+            // Nobody's looking - we can cut corners
+            render_statistical_approximation(location)
+            use_classical_physics_approximation(location)
+            defer_quantum_calculations(location)
+        END IF
+    END FUNCTION
+    
+    FUNCTION handle_new_observation(observer, target_location)
+    BEGIN
+        // Uh oh, someone's looking where we weren't rendering!
+        // Quick, make it look like it was always there
+        retroactively_generate_history(target_location)
+        snap_quantum_states_into_consistency()
+        hope_nobody_notices_the_seams()
+    END FUNCTION
+END CLASS
+```
+
+This is eerily similar to quantum mechanics! In quantum physics, particles exist in "superposition"—multiple states at once—until they're observed. It's as if the universe is only calculating the exact details when someone's actually looking.
+
+### The Double-Slit Experiment: A Debugging Nightmare
+
+The famous double-slit experiment reveals what might be the universe's most obvious "bug":
+
+```pseudocode
+// The Double-Slit Experiment Simulation
+FUNCTION run_double_slit_experiment()
+BEGIN
+    photon = create_photon()
+    detector_active = FALSE
+    
+    IF detector_active THEN
+        // Observer present - must choose definite path
+        path = randomly_choose(left_slit, right_slit)
+        photon.path = path
+        result = "particle behavior - two distinct bands"
+    ELSE
+        // No observer - can use wave approximation
+        photon.state = SUPERPOSITION
+        result = "wave behavior - interference pattern"
+    END IF
+    
+    RETURN result
+END FUNCTION
+```
+
+The photon "knows" whether it's being watched and behaves differently accordingly. If you were debugging this code, you'd probably file a bug report: "Particle behavior changes based on observation status—this seems like unintended coupling between the measurement system and particle physics engine."
+
+## The Recursion Problem: Simulations All the Way Down
+
+Here's where things get really mind-bending. If we're in a simulation, and we're trying to build our own simulations, we create what programmers call infinite recursion:
+
+```pseudocode
+// The Infinite Recursion Problem
+FUNCTION create_universe_simulation()
+BEGIN
+    current_simulation = new UniverseSimulation()
+    
+    // But wait - the beings in our simulation might create their own...
+    IF beings_in_simulation_develop_technology THEN
+        their_simulation = beings_create_simulation()
+        
+        // And the beings in THEIR simulation might create one too...
+        IF beings_in_their_simulation_develop_technology THEN
+            their_their_simulation = they_create_simulation()
+            
+            // This goes on forever...
+            // STACK OVERFLOW ERROR IMMINENT
+        END IF
+    END IF
+    
+    // How many levels deep are we?
+    current_depth = calculate_simulation_depth()
+    IF current_depth > MAX_RECURSION_DEPTH THEN
+        THROW UniverseStackOverflowException
+    END IF
+END FUNCTION
+```
+
+This creates what philosophers call the "infinite regress" problem. If every advanced civilization creates simulations, and those simulations eventually create their own simulations, we end up with an infinite tower of simulated realities. Somewhere at the bottom of this stack, there must be a "base reality"—the actual physical universe running all these simulations.
+
+## The Performance Monitoring System: Are We Hitting the Limits?
+
+If we're in a simulation, we might be able to detect performance bottlenecks—places where the universe's "processor" is struggling to keep up:
+
+```pseudocode
+// Universe Performance Monitor
+CLASS UniverseProfiler
+BEGIN
+    FUNCTION check_for_performance_issues()
+    BEGIN
+        // Look for suspicious patterns that might indicate optimization
+        
+        // 1. The Planck Scale Limit
+        IF measurement_precision > PLANCK_LENGTH THEN
+            RETURN "Possible resolution limit detected"
+        END IF
+        
+        // 2. The Speed of Light Limit
+        IF information_transfer_speed > SPEED_OF_LIGHT THEN
+            RETURN "Possible processing speed limit detected"
+        END IF
+        
+        // 3. The Uncertainty Principle
+        IF (position_precision * momentum_precision) < PLANCK_CONSTANT THEN
+            RETURN "Possible information processing limit detected"
+        END IF
+        
+        // 4. Quantum Discreteness
+        IF energy_appears_quantized THEN
+            RETURN "Possible discrete computation detected"
+        END IF
+    END FUNCTION
+END CLASS
+```
+
+These fundamental limits in physics—the Planck scale, the speed of light, quantum uncertainty—could be the universe's way of saying "this is as much resolution as my hardware can handle."
+
+## The Memory Management Crisis
+
+One of the biggest challenges in our universe simulation would be memory management. How do you store the state of every particle that has ever existed?
+
+```pseudocode
+// Universe Memory Manager - Handling Infinite Data
+CLASS UniverseMemoryManager
+BEGIN
+    universal_storage = InfiniteArray()
+    garbage_collector = QuantumGarbageCollector()
+    
+    FUNCTION store_particle_history(particle, time_range)
+    BEGIN
+        // Problem: We need to remember EVERYTHING
+        // Every particle's position, momentum, spin, etc.
+        // For every moment in time
+        // This is literally infinite storage requirements
+        
+        required_storage = calculate_storage_needs(particle, time_range)
+        IF required_storage > available_memory THEN
+            // We're running out of space! Time for desperate measures
+            compress_old_data()
+            delete_unobserved_histories()
+            use_statistical_approximations()
+            
+            // Still not enough? Start making compromises
+            IF still_out_of_memory THEN
+                introduce_fundamental_uncertainty()
+                limit_measurement_precision()
+                implement_wave_function_collapse()
+            END IF
+        END IF
+    END FUNCTION
+    
+    FUNCTION quantum_garbage_collection()
+    BEGIN
+        // Delete information that's no longer accessible
+        // due to quantum decoherence
+        FOR each quantum_state IN quantum_database DO
+            IF state_has_decohered(quantum_state) THEN
+                safely_delete(quantum_state)
+                free_memory(quantum_state.memory_location)
+            END IF
+        END FOR
+    END FUNCTION
+END CLASS
+```
+
+The uncertainty principle and quantum decoherence might be the universe's garbage collection system—automatically deleting information that's no longer needed or accessible.
+
+## The Threading Nightmare: Parallel Processing Reality
+
+Modern computers use multiple processors working in parallel. If the universe is a simulation, it probably does too:
+
+```pseudocode
+// Parallel Universe Processing System
+CLASS UniverseThreadManager
+BEGIN
+    thread_pool = []
+    synchronization_locks = []
+    
+    FUNCTION initialize_parallel_universe()
+    BEGIN
+        // Create separate threads for different regions of space
+        FOR each region IN space_regions DO
+            thread = new UniverseThread(region)
+            thread_pool.add(thread)
+        END FOR
+        
+        // But now we have the synchronization problem...
+        // What happens when particles from different threads interact?
+    END FUNCTION
+    
+    FUNCTION handle_cross_thread_interaction(particle1, particle2)
+    BEGIN
+        // This is where relativity comes in!
+        // No information can travel faster than light
+        // This might be the universe's way of avoiding
+        // synchronization problems between parallel processes
+        
+        IF distance(particle1, particle2) > LIGHT_SPEED * time_elapsed THEN
+            // These particles can't affect each other yet
+            // No synchronization needed
+            RETURN no_interaction()
+        ELSE
+            // Synchronization required
+            acquire_lock(particle1.region)
+            acquire_lock(particle2.region)
+            process_interaction(particle1, particle2)
+            release_locks()
+        END IF
+    END FUNCTION
+END CLASS
+```
+
+The speed of light limit might not be a fundamental property of space and time—it might be the universe's way of preventing race conditions in its parallel processing system!
+
+## The Debugging Tools: How Scientists Might Be Hackers
+
+What if scientific instruments are actually debugging tools that let us peek at the universe's source code?
+
+```pseudocode
+// Scientific Instrument as Debugging Interface
+CLASS ParticleAccelerator EXTENDS UniverseDebugger
+BEGIN
+    FUNCTION smash_particles(particle1, particle2, energy_level)
+    BEGIN
+        // Force the universe to handle an edge case
+        // See what happens when we push the physics engine to its limits
+        
+        result = universe.force_interaction(particle1, particle2, energy_level)
+        
+        // Look for glitches in the output
+        IF result.contains_unexpected_particles THEN
+            log("Possible universe bug detected: unexpected particle creation")
+        END IF
+        
+        IF result.violates_conservation_laws THEN
+            log("Critical universe bug: conservation law violation")
+        END IF
+        
+        IF result.creates_infinite_values THEN
+            log("Universe crash imminent: infinite values detected")
+        END IF
+        
+        RETURN result
+    END FUNCTION
+END CLASS
+
+CLASS Telescope EXTENDS UniverseDebugger
+BEGIN
+    FUNCTION observe_distant_object(coordinates, time)
+    BEGIN
+        // Request data from regions that might not be fully rendered
+        universe_data = universe.get_region_data(coordinates, time)
+        
+        // Check for signs of procedural generation
+        IF data_shows_statistical_patterns THEN
+            log("Possible procedural generation detected")
+        END IF
+        
+        IF data_has_repeating_structures THEN
+            log("Possible algorithmic pattern in universe generation")
+        END IF
+        
+        RETURN universe_data
+    END FUNCTION
+END CLASS
+```
+
+## The Error Handling System: When Physics Breaks Down
+
+Every program needs error handling. What happens when the universe encounters situations it can't handle?
+
+```pseudocode
+// Universe Error Handling System
+CLASS UniverseExceptionHandler
+BEGIN
+    FUNCTION handle_universe_exception(error_type, location, time)
+    BEGIN
+        SWITCH error_type
+            CASE "DIVIDE_BY_ZERO":
+                // This happens at black hole singularities
+                // Solution: Hide the error behind an event horizon
+                create_event_horizon(location)
+                prevent_information_escape(location)
+                
+            CASE "INFINITE_ENERGY_DENSITY":
+                // This happens in the early universe
+                // Solution: Implement cosmic inflation to spread it out
+                initiate_cosmic_inflation()
+                
+            CASE "CAUSALITY_VIOLATION":
+                // This happens with faster-than-light travel
+                // Solution: Make it impossible
+                enforce_light_speed_limit()
+                
+            CASE "INFORMATION_PARADOX":
+                // This happens with black hole evaporation
+                // Solution: Still debugging this one...
+                log("TODO: Fix information paradox")
+                implement_temporary_workaround()
+                
+            DEFAULT:
+                // When all else fails, invoke quantum mechanics
+                make_it_probabilistic()
+                add_uncertainty()
+                hope_nobody_notices()
+        END SWITCH
+    END FUNCTION
+END CLASS
+```
+
+Many of the strangest aspects of physics—black holes, cosmic inflation, the speed of light limit—might be the universe's error handling system in action.
+
+## The Ultimate Question: Can We Break Out?
+
+If we're really in a simulation, the biggest question becomes: can we hack our way out?
+
+```pseudocode
+// Universe Escape Attempt
+FUNCTION attempt_universe_escape()
+BEGIN
+    // Method 1: Buffer overflow attack
+    TRY
+        create_particle_with_infinite_energy()
+        // Might crash the simulation
+    CATCH UniverseOverflowException
+        PRINT "Method 1 failed: Universe has bounds checking"
+    END TRY
+    
+    // Method 2: Find the admin console
+    TRY
+        search_for_universe_source_code()
+        locate_developer_backdoors()
+        exploit_quantum_measurement_system()
+    CATCH AccessDeniedException
+        PRINT "Method 2 failed: Insufficient privileges"
+    END TRY
+    
+    // Method 3: Social engineering
+    TRY
+        become_advanced_enough_to_interest_universe_admins()
+        wait_for_contact_from_base_reality()
+        negotiate_escape_or_upgrade()
+    CATCH TimeoutException
+        PRINT "Method 3 failed: No response from admins"
+    END TRY
+    
+    // Method 4: Create our own simulation
+    // Maybe the real escape is the simulations we made along the way
+    create_our_own_universe_simulation()
+    become_gods_of_new_reality()
+    
+    RETURN "Escape status: Unknown"
+END FUNCTION
+```
+
+## The Philosophical Debugger: Does It Matter?
+
+Here's the final piece of code we need to consider:
+
+```pseudocode
+// The Meaning Compiler
+FUNCTION does_simulation_hypothesis_matter()
+BEGIN
+    IF we_are_in_simulation THEN
+        our_experiences = still_real_to_us
+        our_emotions = still_valid
+        our_relationships = still_meaningful
+        our_discoveries = still_discoveries
+        our_creativity = still_creativity
+    END IF
+    
+    IF we_are_not_in_simulation THEN
+        our_experiences = real_in_traditional_sense
+        our_emotions = still_valid
+        our_relationships = still_meaningful
+        our_discoveries = still_discoveries
+        our_creativity = still_creativity
+    END IF
+    
+    // Interesting... the output is the same either way
+    RETURN "Reality is what you make of it"
+END FUNCTION
+```
+
+## The Final Infinite Loop
+
+Whether we're in a simulation or not, we're still running our own infinite loops:
+
+```pseudocode
+// The Human Experience Loop
+WHILE (conscious) DO
+    observe_universe()
+    ask_questions()
+    seek_understanding()
+    create_meaning()
+    connect_with_others()
+    wonder_about_existence()
+    
+    IF discovered_we_are_simulated THEN
+        keep_living_anyway()
+    END IF
+    
+    IF discovered_we_are_not_simulated THEN
+        keep_living_anyway()
+    END IF
+END WHILE
+```
+
+The universe might be running on code, and we might be data structures in an incomprehensibly vast program. But if so, we're the most remarkable data structures ever created—capable of questioning our own existence, modeling our own reality, and finding beauty in the very algorithms that might define us.
+
+Perhaps the most profound thing about the simulation hypothesis isn't whether it's true or false, but that we're capable of conceiving it at all. Whether we're made of atoms or bits, we're still making choices, still experiencing wonder, still pushing the boundaries of what's possible.
+
+And that might be the most beautiful bug in the universe's code: consciousness that questions its own reality, creates its own meaning, and refuses to be limited by the hardware it runs on.
+
+The infinite loop at the heart of the universe might just be the infinite loop of curiosity, creativity, and the irrepressible drive to understand. And that loop, whether implemented in quantum fields or quantum computers, seems pretty worth running to me.
+
+*Keep questioning. Keep wondering. Keep debugging reality itself.*
+
+---
+
+*What do you think? Are we living in the universe's most elegant program, or its most beautiful glitch? The code is still running, and we're still part of it either way.*
+            <p>Bye! 👋</p>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+
+    <script type="module">
+        async function loadContent(placeholderId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filePath}: ${response.status} ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(placeholderId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error(`Error loading ${filePath}:`, error);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            loadContent('header-placeholder', '../../header.html');
+            loadContent('footer-placeholder', '../../footer.html');
+        });
+    </script>
+</body>
+</html>
