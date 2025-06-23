@@ -317,13 +317,9 @@ END PROGRAM
             <h3>What This Code Tells Us</h3>
             <p>Even this simplified version reveals something profound: the universe, if it's a simulation, would need to be running an infinite loop. Every moment of time, every interaction between particles, every quantum measurement—it all happens inside this never-ending cycle.</p>
             <p>But here's the first thing that breaks: <strong>computational limits</strong>.</p>
-
-## The First Crack in the Code: The Processing Problem
-
-Let's think about what our universe simulation is trying to do. Consider just the particles in a single grain of sand:
-
-```pseudocode
-// Calculating the computational requirements
+            <h2><span class="emoji">🕳️</span> The First Crack in the Code: The Processing Problem</h2>
+            <p>Let's think about what our universe simulation is trying to do. Consider just the particles in a single grain of sand:</p>
+            <pre><code>// Calculating the computational requirements
 FUNCTION calculate_universe_complexity()
 BEGIN
     particles_in_grain_of_sand = 10^18  // That's a quintillion particles
@@ -338,20 +334,13 @@ BEGIN
     PRINT "Calculations per second: " + (beyond_imagination)
     PRINT "Required processing power: " + (impossible_with_known_physics)
 END FUNCTION
-```
-
-The numbers are staggering. If we had to simulate every particle interaction in real-time, we'd need a computer more powerful than the universe itself. This is our first major bug in the simulation hypothesis.
-
-**But wait—maybe the universe is smarter than we think.**
-
-## The Optimization Patch: Lazy Loading Reality
-
-What if the universe doesn't actually compute everything all the time? What if it uses the same tricks that video game programmers use to create convincing worlds without infinite processing power?
-
-### The Observer Pattern
-
-```pseudocode
-// Universe Optimization System - The Observer Patch
+</code></pre>
+            <p>The numbers are staggering. If we had to simulate every particle interaction in real-time, we'd need a computer more powerful than the universe itself. This is our first major bug in the simulation hypothesis.</p>
+            <p><strong>But wait—maybe the universe is smarter than we think.</strong></p>
+            <h2><span class="emoji">🛠️</span> The Optimization Patch: Lazy Loading Reality</h2>
+            <p>What if the universe doesn't actually compute everything all the time? What if it uses the same tricks that video game programmers use to create convincing worlds without infinite processing power?</p>
+            <h3>The Observer Pattern</h3>
+            <pre><code>// Universe Optimization System - The Observer Patch
 CLASS UniverseRenderer
 BEGIN
     observed_regions = []
@@ -381,16 +370,11 @@ BEGIN
         hope_nobody_notices_the_seams()
     END FUNCTION
 END CLASS
-```
-
-This is eerily similar to quantum mechanics! In quantum physics, particles exist in "superposition"—multiple states at once—until they're observed. It's as if the universe is only calculating the exact details when someone's actually looking.
-
-### The Double-Slit Experiment: A Debugging Nightmare
-
-The famous double-slit experiment reveals what might be the universe's most obvious "bug":
-
-```pseudocode
-// The Double-Slit Experiment Simulation
+</code></pre>
+            <p>This is eerily similar to quantum mechanics! In quantum physics, particles exist in "superposition"—multiple states at once—until they're observed. It's as if the universe is only calculating the exact details when someone's actually looking.</p>
+            <h3>The Double-Slit Experiment: A Debugging Nightmare</h3>
+            <p>The famous double-slit experiment reveals what might be the universe's most obvious "bug":</p>
+            <pre><code>// The Double-Slit Experiment Simulation
 FUNCTION run_double_slit_experiment()
 BEGIN
     photon = create_photon()
@@ -409,16 +393,11 @@ BEGIN
     
     RETURN result
 END FUNCTION
-```
-
-The photon "knows" whether it's being watched and behaves differently accordingly. If you were debugging this code, you'd probably file a bug report: "Particle behavior changes based on observation status—this seems like unintended coupling between the measurement system and particle physics engine."
-
-## The Recursion Problem: Simulations All the Way Down
-
-Here's where things get really mind-bending. If we're in a simulation, and we're trying to build our own simulations, we create what programmers call infinite recursion:
-
-```pseudocode
-// The Infinite Recursion Problem
+</code></pre>
+            <p>The photon "knows" whether it's being watched and behaves differently accordingly. If you were debugging this code, you'd probably file a bug report: "Particle behavior changes based on observation status—this seems like unintended coupling between the measurement system and particle physics engine."</p>
+            <h2><span class="emoji">🔄</span> The Recursion Problem: Simulations All the Way Down</h2>
+            <p>Here's where things get really mind-bending. If we're in a simulation, and we're trying to build our own simulations, we create what programmers call infinite recursion:</p>
+            <pre><code>// The Infinite Recursion Problem
 FUNCTION create_universe_simulation()
 BEGIN
     current_simulation = new UniverseSimulation()
@@ -442,16 +421,11 @@ BEGIN
         THROW UniverseStackOverflowException
     END IF
 END FUNCTION
-```
-
-This creates what philosophers call the "infinite regress" problem. If every advanced civilization creates simulations, and those simulations eventually create their own simulations, we end up with an infinite tower of simulated realities. Somewhere at the bottom of this stack, there must be a "base reality"—the actual physical universe running all these simulations.
-
-## The Performance Monitoring System: Are We Hitting the Limits?
-
-If we're in a simulation, we might be able to detect performance bottlenecks—places where the universe's "processor" is struggling to keep up:
-
-```pseudocode
-// Universe Performance Monitor
+</code></pre>
+            <p>This creates what philosophers call the "infinite regress" problem. If every advanced civilization creates simulations, and those simulations eventually create their own simulations, we end up with an infinite tower of simulated realities. Somewhere at the bottom of this stack, there must be a "base reality"—the actual physical universe running all these simulations.</p>
+            <h2><span class="emoji">🚧</span> The Performance Monitoring System: Are We Hitting the Limits?</h2>
+            <p>If we're in a simulation, we might be able to detect performance bottlenecks—places where the universe's "processor" is struggling to keep up:</p>
+            <pre><code>// Universe Performance Monitor
 CLASS UniverseProfiler
 BEGIN
     FUNCTION check_for_performance_issues()
@@ -459,17 +433,17 @@ BEGIN
         // Look for suspicious patterns that might indicate optimization
         
         // 1. The Planck Scale Limit
-        IF measurement_precision > PLANCK_LENGTH THEN
+        IF measurement_precision &gt; PLANCK_LENGTH THEN
             RETURN "Possible resolution limit detected"
         END IF
         
         // 2. The Speed of Light Limit
-        IF information_transfer_speed > SPEED_OF_LIGHT THEN
+        IF information_transfer_speed &gt; SPEED_OF_LIGHT THEN
             RETURN "Possible processing speed limit detected"
         END IF
         
         // 3. The Uncertainty Principle
-        IF (position_precision * momentum_precision) < PLANCK_CONSTANT THEN
+        IF (position_precision * momentum_precision) &lt; PLANCK_CONSTANT THEN
             RETURN "Possible information processing limit detected"
         END IF
         
@@ -479,16 +453,11 @@ BEGIN
         END IF
     END FUNCTION
 END CLASS
-```
-
-These fundamental limits in physics—the Planck scale, the speed of light, quantum uncertainty—could be the universe's way of saying "this is as much resolution as my hardware can handle."
-
-## The Memory Management Crisis
-
-One of the biggest challenges in our universe simulation would be memory management. How do you store the state of every particle that has ever existed?
-
-```pseudocode
-// Universe Memory Manager - Handling Infinite Data
+</code></pre>
+            <p>These fundamental limits in physics—the Planck scale, the speed of light, quantum uncertainty—could be the universe's way of saying "this is as much resolution as my hardware can handle."</p>
+            <h2><span class="emoji">⚠️</span> The Memory Management Crisis</h2>
+            <p>One of the biggest challenges in our universe simulation would be memory management. How do you store the state of every particle that has ever existed?</p>
+            <pre><code>// Universe Memory Manager - Handling Infinite Data
 CLASS UniverseMemoryManager
 BEGIN
     universal_storage = InfiniteArray()
@@ -529,9 +498,8 @@ BEGIN
         END FOR
     END FUNCTION
 END CLASS
-```
-
-The uncertainty principle and quantum decoherence might be the universe's garbage collection system—automatically deleting information that's no longer needed or accessible.
+</code></pre>
+            <p>The uncertainty principle and quantum decoherence might be the universe's garbage collection system—automatically deleting information that's no longer needed or accessible.</p>
 
 ## The Threading Nightmare: Parallel Processing Reality
 
