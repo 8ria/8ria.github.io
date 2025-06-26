@@ -278,50 +278,38 @@
                 <li><strong>Demonstrates multiple solution paths</strong> rather than just the "best" one</li>
             </ul>
             <p>Think of it like learning to paint. If you only studied perfect masterpieces, you'd never understand the sketches, the experiments, the "happy accidents" that led to breakthrough techniques.</p>
-
-## The Science Behind Imperfect Training
-
-### Step 1: Collecting Messy Data
-
-Traditional AI training uses curated datasets filled with polished code examples. The new approach intentionally includes:
-
-- **First drafts** of code before optimization
-- **Multiple solution attempts** for the same problem
-- **Partially working prototypes** that evolved into final solutions
-- **Code with intentional inefficiencies** that demonstrate different thinking patterns
-
-Researchers collect this data from real programming sessions, GitHub commit histories, and collaborative coding environments where they can see the full problem-solving process.
-
-### Step 2: Teaching Pattern Recognition
-
-Instead of just learning "this is the right answer," the AI learns to recognize patterns like:
-
-- "This approach is unconventional but creative"
-- "This solution is inefficient but demonstrates clear thinking"
-- "This mistake leads to an interesting discovery"
-- "This detour actually reveals a better final solution"
-
-The AI builds a more nuanced understanding of problem-solving that includes the messy, human process of exploration and discovery.
-
-### Step 3: Encouraging Exploration
-
-During training, the AI is rewarded not just for finding correct solutions, but for:
-
-- **Exploring multiple approaches** before settling on one
-- **Showing its reasoning process** through intermediate steps
-- **Generating creative alternatives** to standard solutions
-- **Learning from its own mistakes** and iterating
-
-This creates an AI that thinks more like a human programmer who experiments and adapts.
-
-## Real-World Examples: When "Bad" Code Leads to Better Solutions
-
-### Example 1: The Roundabout Route
-
-A traditional AI might solve a sorting problem with a standard quicksort algorithm:
-
-```python
-def quicksort(arr):
+            <h2><span class="emoji">🧪</span> The Science Behind Imperfect Training</h2>
+            <h3>Step 1: Collecting Messy Data</h3>
+            <p>Traditional AI training uses curated datasets filled with polished code examples. The new approach intentionally includes:</p>
+            <ul>
+                <li><strong>First drafts</strong> of code before optimization</li>
+                <li><strong>Multiple solution attempts</strong> for the same problem</li>
+                <li><strong>Partially working prototypes</strong> that evolved into final solutions</li>
+                <li><strong>Code with intentional inefficiencies</strong> that demonstrate different thinking patterns</li>
+            </ul>
+            <p>Researchers collect this data from real programming sessions, GitHub commit histories, and collaborative coding environments where they can see the full problem-solving process.</p>
+            <h3>Step 2: Teaching Pattern Recognition</h3>
+            <p>Instead of just learning "this is the right answer," the AI learns to recognize patterns like:</p>
+            <ul>
+                <li>"This approach is unconventional but creative"</li>
+                <li>"This solution is inefficient but demonstrates clear thinking"</li>
+                <li>"This mistake leads to an interesting discovery"</li>
+                <li>"This detour actually reveals a better final solution"</li>
+            </ul>
+            <p>The AI builds a more nuanced understanding of problem-solving that includes the messy, human process of exploration and discovery.</p>
+            <h3>Step 3: Encouraging Exploration</h3>
+            <p>During training, the AI is rewarded not just for finding correct solutions, but for:</p>
+            <ul>
+                <li><strong>Exploring multiple approaches</strong> before settling on one</li>
+                <li><strong>Showing its reasoning process</strong> through intermediate steps</li>
+                <li><strong>Generating creative alternatives</strong> to standard solutions</li>
+                <li><strong>Learning from its own mistakes</strong> and iterating</li>
+            </ul>
+            <p>This creates an AI that thinks more like a human programmer who experiments and adapts.</p>
+            <h2><span class="emoji">🔍</span> Real-World Examples: When "Bad" Code Leads to Better Solutions</h2>
+            <h3>Example 1: The Roundabout Route</h3>
+            <p>A traditional AI might solve a sorting problem with a standard quicksort algorithm:</p>
+            <pre><code>def quicksort(arr):
     if len(arr) <= 1:
         return arr
     pivot = arr[len(arr) // 2]
@@ -329,12 +317,9 @@ def quicksort(arr):
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
     return quicksort(left) + middle + quicksort(right)
-```
-
-An AI trained on "imperfect" examples might first try several approaches:
-
-```python
-# Attempt 1: Bubble sort (inefficient but educational)
+</code></pre>
+            <p>An AI trained on "imperfect" examples might first try several approaches:</p>
+            <pre><code># Attempt 1: Bubble sort (inefficient but educational)
 def sort_attempt1(arr):
     for i in range(len(arr)):
         for j in range(len(arr)-1):
@@ -349,16 +334,11 @@ def sort_attempt2(arr):
     medium = [x for x in arr if 50 <= x < 100]
     large = [x for x in arr if x >= 100]
     # Then sort each group...
-```
-
-This process reveals that the AI is thinking about the problem from multiple angles, potentially discovering domain-specific optimizations that a perfectly trained AI might miss.
-
-### Example 2: The Creative Workaround
-
-When asked to find duplicate elements in a list, a traditional AI gives the standard solution:
-
-```python
-def find_duplicates(lst):
+</code></pre>
+            <p>This process reveals that the AI is thinking about the problem from multiple angles, potentially discovering domain-specific optimizations that a perfectly trained AI might miss.</p>
+            <h3>Example 2: The Creative Workaround</h3>
+            <p>When asked to find duplicate elements in a list, a traditional AI gives the standard solution:</p>
+            <pre><code>def find_duplicates(lst):
     seen = set()
     duplicates = set()
     for item in lst:
@@ -367,12 +347,9 @@ def find_duplicates(lst):
         else:
             seen.add(item)
     return list(duplicates)
-```
-
-An "imperfectly" trained AI might show this thought process:
-
-```python
-# First thought: Let's count everything
+</code></pre>
+            <p>An "imperfectly" trained AI might show this thought process:</p>
+            <pre><code># First thought: Let's count everything
 from collections import Counter
 def find_duplicates_v1(lst):
     counts = Counter(lst)
@@ -385,9 +362,8 @@ def find_duplicates_v2(lst):
 # Hmm, that's inefficient. What about...
 def find_duplicates_v3(lst):
     return list(set([x for i, x in enumerate(lst) if x in lst[:i]]))
-```
-
-This exploration reveals different ways of thinking about the problem and might uncover edge cases or performance characteristics that matter in specific situations.
+</code></pre>
+            <p>This exploration reveals different ways of thinking about the problem and might uncover edge cases or performance characteristics that matter in specific situations.</p>
 
 ## The Surprising Benefits
 
