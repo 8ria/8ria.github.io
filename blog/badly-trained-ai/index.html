@@ -379,33 +379,30 @@ def find_duplicates_v3(lst):
             <p>When working with human programmers, these AI systems feel more like collaborative partners than perfect but inflexible tools. They can engage in the messy, iterative process that real software development requires.</p>
             <h3>Robust Learning</h3>
             <p>Traditional AI can break down when faced with problems slightly different from their training data. AI trained on imperfect examples shows more robust learning—they've seen how to adapt and recover from approaches that don't quite work.</p>
-
-## The Technical Implementation
-
-### Data Collection Strategy
-
-Researchers use several techniques to gather "imperfect" training data:
-
-1. **Version Control Mining**: Analyzing Git histories to see how code evolved through multiple commits
-2. **Live Coding Sessions**: Recording programmers working through problems in real-time
-3. **Competitive Programming**: Collecting multiple solutions to the same problem with different efficiency profiles
-4. **Student Code Analysis**: Using submissions from programming courses that show learning progression
-
-### Training Methodology
-
-The training process involves:
-
-1. **Multi-objective Optimization**: Instead of optimizing for just correctness, the AI optimizes for correctness, creativity, explanation quality, and solution diversity
-2. **Curriculum Learning**: Starting with simple problems and gradually introducing more complex scenarios where multiple approaches are valid
-3. **Reinforcement Learning**: Rewarding the AI not just for final answers but for the quality of its problem-solving process
-
-### Evaluation Metrics
-
-Success is measured by:
-- **Solution Quality**: How well the final code works
-- **Process Quality**: How well the AI explains and explores different approaches
-- **Creativity Score**: How novel and useful the AI's solutions are
-- **Human Preference**: How much human programmers prefer working with this AI versus traditionally trained systems
+            <h2><span class="emoji">🛠️</span> The Technical Implementation</h2>
+            <h3>Data Collection Strategy</h3>
+            <p>Researchers use several techniques to gather "imperfect" training data:</p>
+            <ol>
+                <li><strong>Version Control Mining</strong>: Analyzing Git histories to see how code evolved through multiple commits</li>
+                <li><strong>Live Coding Sessions</strong>: Recording programmers working through problems in real-time</li>
+                <li><strong>Competitive Programming</strong>: Collecting multiple solutions to the same problem with different efficiency profiles</li>
+                <li><strong>Student Code Analysis</strong>: Using submissions from programming courses that show learning progression</li>
+            </ol>
+            <h3>Training Methodology</h3>
+            <p>The training process involves:</p>
+            <ol>
+                <li><strong>Multi-objective Optimization</strong>: Instead of optimizing for just correctness, the AI optimizes for correctness, creativity, explanation quality, and solution diversity</li>
+                <li><strong>Curriculum Learning</strong>: Starting with simple problems and gradually introducing more complex scenarios where multiple approaches are valid</li>
+                <li><strong>Reinforcement Learning</strong>: Rewarding the AI not just for final answers but for the quality of its problem-solving process</li>
+            </ol>
+            <h3>Evaluation Metrics</h3>
+            <p>Success is measured by:</p>
+            <ul>
+                <li><strong>Solution Quality</strong>: How well the final code works</li>
+                <li><strong>Process Quality</strong>: How well the AI explains and explores different approaches</li>
+                <li><strong>Creativity Score</strong>: How novel and useful the AI's solutions are</li>
+                <li><strong>Human Preference</strong>: How much human programmers prefer working with this AI versus traditionally trained systems</li>
+            </ul>
 
 ## Challenges and Limitations
 
