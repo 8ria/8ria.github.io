@@ -403,27 +403,20 @@ def find_duplicates_v3(lst):
                 <li><strong>Creativity Score</strong>: How novel and useful the AI's solutions are</li>
                 <li><strong>Human Preference</strong>: How much human programmers prefer working with this AI versus traditionally trained systems</li>
             </ul>
-
-## Challenges and Limitations
-
-### The Balance Problem
-
-The biggest challenge is finding the right balance. Too much emphasis on imperfection, and the AI becomes unreliable. Too little, and it remains rigid and uncreative.
-
-Researchers solve this by using **weighted training objectives** where correctness still carries the most weight, but creativity and process quality also contribute to the AI's learning signals.
-
-### Quality Control
-
-There's a risk that teaching AI to write "bad" code could lead to genuinely problematic outputs. Safeguards include:
-
-- **Correctness Verification**: All generated code must ultimately work
-- **Security Scanning**: Automated tools check for potential vulnerabilities
-- **Human Review**: Expert programmers evaluate training data quality
-- **Staged Deployment**: Testing in controlled environments before broader release
-
-### Computational Costs
-
-Training AI to explore multiple approaches is computationally expensive. Each problem might require generating and evaluating dozens of potential solutions instead of just finding one correct answer.
+            <h2><span class="emoji">🚧</span> Challenges and Limitations</h2>
+            <h3>The Balance Problem</h3>
+            <p>The biggest challenge is finding the right balance. Too much emphasis on imperfection, and the AI becomes unreliable. Too little, and it remains rigid and uncreative.</p>
+            <p>Researchers solve this by using <strong>weighted training objectives</strong> where correctness still carries the most weight, but creativity and process quality also contribute to the AI's learning signals.</p>
+            <h3>Quality Control</h3>
+            <p>There's a risk that teaching AI to write "bad" code could lead to genuinely problematic outputs. Safeguards include:</p>
+            <ul>
+                <li><strong>Correctness Verification</strong>: All generated code must ultimately work</li>
+                <li><strong>Security Scanning</strong>: Automated tools check for potential vulnerabilities</li>
+                <li><strong>Human Review</strong>: Expert programmers evaluate training data quality</li>
+                <li><strong>Staged Deployment</strong>: Testing in controlled environments before broader release</li>
+            </ul>
+            <h3>Computational Costs</h3>
+            <p>Training AI to explore multiple approaches is computationally expensive. Each problem might require generating and evaluating dozens of potential solutions instead of just finding one correct answer.</p>
 
 ## The Broader Implications
 
