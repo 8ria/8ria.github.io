@@ -306,49 +306,30 @@
             <p><strong>Memory Overhead</strong>: Each token requires its own embedding vector (typically 1,024 to 4,096 dimensions). Fragmenting words into many tokens multiplies memory usage unnecessarily.</p>
             <p><strong>Processing Speed</strong>: More tokens mean more computation. A sentence that could be represented with 10 meaningful tokens might require 15-20 subword tokens, increasing processing time by 50-100%.</p>
             <p><strong>Attention Complexity</strong>: The attention mechanism that helps models understand relationships between words scales quadratically with sequence length. Extra tokens don't just slow things down—they make the slowdown exponentially worse.</p>
-
-### Problem 3: Cross-Language Inequality
-
-Current tokenization methods show significant bias toward English and other Western languages:
-
-**English Privilege**: English text typically requires fewer tokens than other languages. The sentence "Hello, how are you?" might be 4-5 tokens in English but 8-10 tokens in Japanese or Arabic.
-
-**Training Inequality**: Since models have fixed context windows (like GPT-4's 8,192 tokens), non-English speakers effectively get less "thinking space" for the same computational cost.
-
-**Cultural Blindness**: Tokenizers often break down non-Western names, cultural concepts, and technical terms in ways that strip away cultural context and meaning.
-
-### Problem 4: Context Window Waste
-
-Modern AI models have limited context windows—they can only "remember" a certain number of tokens at once. Current tokenization wastes this precious space:
-
-**Redundant Splitting**: Common words get split unnecessarily. "information" might become ["in", "formation"], using two tokens where one would suffice.
-
-**Lost Coherence**: Important concepts get scattered across multiple tokens, making it harder for the model to maintain coherent understanding across long documents.
-
-## The Deeper Issues: Why This Matters More Than You Think
-
-### The Abstraction Problem
-
-Current tokenization forces AI models to work at the wrong level of abstraction. Imagine trying to understand a novel by analyzing individual letters instead of words, sentences, and paragraphs. The model wastes enormous computational resources reconstructing basic linguistic units instead of focusing on higher-level reasoning.
-
-### The Compositionality Crisis
-
-Human language is compositional—we build complex meanings by combining simpler parts. But current tokenization often breaks this natural structure:
-
-- "unhappiness" might become ["un", "happy", "ness"]
-- "international" might become ["inter", "national"]
-
-While these splits aren't completely arbitrary, they force the model to relearn composition patterns that are already encoded in the language structure.
-
-### The Scaling Paradox
-
-As AI models get larger and more powerful, tokenization becomes an increasingly significant bottleneck:
-
-**Memory Scaling**: Larger models need bigger embedding tables, making inefficient tokenization exponentially more expensive.
-
-**Training Costs**: Every unnecessary token multiplies training time and energy consumption across massive datasets.
-
-**Inference Latency**: In real-time applications, tokenization overhead can dominate response times, especially for shorter queries.
+            <h3>Problem 3: Cross-Language Inequality</h3>
+            <p>Current tokenization methods show significant bias toward English and other Western languages:</p>
+            <p><strong>English Privilege</strong>: English text typically requires fewer tokens than other languages. The sentence "Hello, how are you?" might be 4-5 tokens in English but 8-10 tokens in Japanese or Arabic.</p>
+            <p><strong>Training Inequality</strong>: Since models have fixed context windows (like GPT-4's 8,192 tokens), non-English speakers effectively get less "thinking space" for the same computational cost.</p>
+            <p><strong>Cultural Blindness</strong>: Tokenizers often break down non-Western names, cultural concepts, and technical terms in ways that strip away cultural context and meaning.</p>
+            <h3>Problem 4: Context Window Waste</h3>
+            <p>Modern AI models have limited context windows—they can only "remember" a certain number of tokens at once. Current tokenization wastes this precious space:</p>
+            <p><strong>Redundant Splitting</strong>: Common words get split unnecessarily. "information" might become ["in", "formation"], using two tokens where one would suffice.</p>
+            <p><strong>Lost Coherence</strong>: Important concepts get scattered across multiple tokens, making it harder for the model to maintain coherent understanding across long documents.</p>
+            <h2><span class="emoji">🔍</span> The Deeper Issues: Why This Matters More Than You Think</h2>
+            <h3>The Abstraction Problem</h3>
+            <p>Current tokenization forces AI models to work at the wrong level of abstraction. Imagine trying to understand a novel by analyzing individual letters instead of words, sentences, and paragraphs. The model wastes enormous computational resources reconstructing basic linguistic units instead of focusing on higher-level reasoning.</p>
+            <h3>The Compositionality Crisis</h3>
+            <p>Human language is compositional—we build complex meanings by combining simpler parts. But current tokenization often breaks this natural structure:</p>
+            <ul>
+                <li>"unhappiness" might become ["un", "happy", "ness"]</li>
+                <li>"international" might become ["inter", "national"]</li>
+            </ul>
+            <p>While these splits aren't completely arbitrary, they force the model to relearn composition patterns that are already encoded in the language structure.</p>
+            <h3>The Scaling Paradox</h3>
+            <p>As AI models get larger and more powerful, tokenization becomes an increasingly significant bottleneck:</p>
+            <p><strong>Memory Scaling</strong>: Larger models need bigger embedding tables, making inefficient tokenization exponentially more expensive.</p>
+            <p><strong>Training Costs</strong>: Every unnecessary token multiplies training time and energy consumption across massive datasets.</p>
+            <p><strong>Inference Latency</strong>: In real-time applications, tokenization overhead can dominate response times, especially for shorter queries.</p>
 
 ## Why Current Solutions Aren't Enough
 
