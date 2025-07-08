@@ -285,44 +285,27 @@
             <p>This process creates a vocabulary of 50,000-100,000 tokens, ranging from single characters to common words and frequent subword combinations.</p>
             <p><strong>Step 3: Processing New Text</strong></p>
             <p>When new text arrives, the system breaks it down using this learned vocabulary, always choosing the longest possible tokens from its dictionary.</p>
-
-### Why This Approach Emerged
-
-Subword tokenization solved several critical problems:
-
-**The Vocabulary Problem**: Pure word-level tokenization would require millions of tokens to handle all possible words, including typos, names, and technical terms. This would make models impossibly large and slow.
-
-**The Flexibility Problem**: Character-level tokenization creates extremely long sequences. A simple sentence might become hundreds of tokens, making it hard for models to understand relationships between distant words.
-
-**The Unknown Word Problem**: When a model encounters a word it has never seen before, subword tokenization can still break it down into familiar pieces, allowing the model to make educated guesses about meaning.
-
-## The Hidden Costs: Where Current Tokenization Falls Short
-
-### Problem 1: Semantic Fragmentation
-
-One of the most serious issues with current tokenization is **semantic fragmentation**—when meaningful units of language get split in ways that damage understanding.
-
-**Example: Technical Terms**
-Consider the word "deoxyribonucleic" (as in DNA). Current tokenizers might split this as:
-- ["de", "oxy", "r", "ibo", "nu", "cle", "ic"]
-
-The model now has to reconstruct the meaning of this complex scientific term from seven seemingly unrelated pieces. It's like trying to understand a symphony by listening to random individual notes.
-
-**Example: Names and Proper Nouns**
-The name "Tchaikovsky" might become:
-- ["T", "cha", "ik", "ovsky"]
-
-The model loses the fact that this is a single entity—a famous composer—and instead sees it as four disconnected pieces.
-
-### Problem 2: Computational Inefficiency
-
-Current tokenization creates several computational bottlenecks:
-
-**Memory Overhead**: Each token requires its own embedding vector (typically 1,024 to 4,096 dimensions). Fragmenting words into many tokens multiplies memory usage unnecessarily.
-
-**Processing Speed**: More tokens mean more computation. A sentence that could be represented with 10 meaningful tokens might require 15-20 subword tokens, increasing processing time by 50-100%.
-
-**Attention Complexity**: The attention mechanism that helps models understand relationships between words scales quadratically with sequence length. Extra tokens don't just slow things down—they make the slowdown exponentially worse.
+            <h3>Why This Approach Emerged</h3>
+            <p>Subword tokenization solved several critical problems:</p>
+            <p><strong>The Vocabulary Problem</strong>: Pure word-level tokenization would require millions of tokens to handle all possible words, including typos, names, and technical terms. This would make models impossibly large and slow.</p>
+            <p><strong>The Flexibility Problem</strong>: Character-level tokenization creates extremely long sequences. A simple sentence might become hundreds of tokens, making it hard for models to understand relationships between distant words.</p>
+            <p><strong>The Unknown Word Problem</strong>: When a model encounters a word it has never seen before, subword tokenization can still break it down into familiar pieces, allowing the model to make educated guesses about meaning.</p>
+            <h2><span class="emoji">⚠️</span> The Hidden Costs: Where Current Tokenization Falls Short</h2>
+            <h3>Problem 1: Semantic Fragmentation</h3>
+            <p>One of the most serious issues with current tokenization is <strong>semantic fragmentation</strong>—when meaningful units of language get split in ways that damage understanding.</p>
+            <p><strong>Example: Technical Terms</strong></p>
+            <p>Consider the word "deoxyribonucleic" (as in DNA). Current tokenizers might split this as:</p>
+            <p>- ["de", "oxy", "r", "ibo", "nu", "cle", "ic"]</p>
+            <p>The model now has to reconstruct the meaning of this complex scientific term from seven seemingly unrelated pieces. It's like trying to understand a symphony by listening to random individual notes.</p>
+            <p><strong>Example: Names and Proper Nouns</strong></p>
+            <p>The name "Tchaikovsky" might become:</p>
+            <p>- ["T", "cha", "ik", "ovsky"]</p>
+            <p>The model loses the fact that this is a single entity—a famous composer—and instead sees it as four disconnected pieces.</p>
+            <h3>Problem 2: Computational Inefficiency</h3>
+            <p>Current tokenization creates several computational bottlenecks:</p>
+            <p><strong>Memory Overhead</strong>: Each token requires its own embedding vector (typically 1,024 to 4,096 dimensions). Fragmenting words into many tokens multiplies memory usage unnecessarily.</p>
+            <p><strong>Processing Speed</strong>: More tokens mean more computation. A sentence that could be represented with 10 meaningful tokens might require 15-20 subword tokens, increasing processing time by 50-100%.</p>
+            <p><strong>Attention Complexity</strong>: The attention mechanism that helps models understand relationships between words scales quadratically with sequence length. Extra tokens don't just slow things down—they make the slowdown exponentially worse.</p>
 
 ### Problem 3: Cross-Language Inequality
 
