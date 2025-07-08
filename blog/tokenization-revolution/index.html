@@ -330,42 +330,24 @@
             <p><strong>Memory Scaling</strong>: Larger models need bigger embedding tables, making inefficient tokenization exponentially more expensive.</p>
             <p><strong>Training Costs</strong>: Every unnecessary token multiplies training time and energy consumption across massive datasets.</p>
             <p><strong>Inference Latency</strong>: In real-time applications, tokenization overhead can dominate response times, especially for shorter queries.</p>
-
-## Why Current Solutions Aren't Enough
-
-### The Vocabulary Size Band-Aid
-
-Some researchers have proposed simply increasing vocabulary sizes to 200,000 or 500,000 tokens. While this reduces fragmentation, it creates new problems:
-
-**Embedding Explosion**: Larger vocabularies require massive embedding tables, consuming enormous amounts of memory.
-
-**Training Complexity**: Rare tokens in huge vocabularies receive little training, leading to poor representations.
-
-**Diminishing Returns**: Beyond a certain point, adding more tokens doesn't significantly improve performance while dramatically increasing costs.
-
-### The Multimodal Distraction
-
-Recent advances in multimodal AI (handling text, images, audio, etc.) have led some to argue that text tokenization will become irrelevant. This misses the point:
-
-**Text Remains Central**: Even multimodal models rely heavily on text understanding for reasoning and explanation.
-
-**Compounding Effects**: Poor text tokenization undermines the entire system, regardless of how well it handles other modalities.
-
-**Scale Matters**: Text processing still consumes the majority of computational resources in most AI applications.
-
-## The Revolution: What Better Tokenization Could Look Like
-
-### Semantic-Aware Tokenization
-
-Instead of relying purely on statistical frequency, future tokenization methods could understand meaning:
-
-**Concept Preservation**: Keep meaningful units intact. "New York City" should be one token, not three.
-
-**Morphological Awareness**: Understand language structure. "unhappiness" should be tokenized as ["un-", "happy", "-ness"] with explicit morphological relationships.
-
-**Context Sensitivity**: The same word might be tokenized differently depending on context—"bank" as a financial institution vs. a river bank.
-
-### Adaptive Tokenization
+            <h2><span class="emoji">🛑</span> Why Current Solutions Aren't Enough</h2>
+            <h3>The Vocabulary Size Band-Aid</h3>
+            <p>Some researchers have proposed simply increasing vocabulary sizes to 200,000 or 500,000 tokens. While this reduces fragmentation, it creates new problems:</p>
+            <p><strong>Embedding Explosion</strong>: Larger vocabularies require massive embedding tables, consuming enormous amounts of memory.</p>
+            <p><strong>Training Complexity</strong>: Rare tokens in huge vocabularies receive little training, leading to poor representations.</p>
+            <p><strong>Diminishing Returns</strong>: Beyond a certain point, adding more tokens doesn't significantly improve performance while dramatically increasing costs.</p>
+            <h3>The Multimodal Distraction</h3>
+            <p>Recent advances in multimodal AI (handling text, images, audio, etc.) have led some to argue that text tokenization will become irrelevant. This misses the point:</p>
+            <p><strong>Text Remains Central</strong>: Even multimodal models rely heavily on text understanding for reasoning and explanation.</p>
+            <p><strong>Compounding Effects</strong>: Poor text tokenization undermines the entire system, regardless of how well it handles other modalities.</p>
+            <p><strong>Scale Matters</strong>: Text processing still consumes the majority of computational resources in most AI applications.</p>
+            <h2><span class="emoji">🚀</span> The Revolution: What Better Tokenization Could Look Like</h2>
+            <h3>Semantic-Aware Tokenization</h3>
+            <p>Instead of relying purely on statistical frequency, future tokenization methods could understand meaning:</p>
+            <p><strong>Concept Preservation</strong>: Keep meaningful units intact. "New York City" should be one token, not three.</p>
+            <p><strong>Morphological Awareness</strong>: Understand language structure. "unhappiness" should be tokenized as ["un-", "happy", "-ness"] with explicit morphological relationships.</p>
+            <p><strong>Context Sensitivity</strong>: The same word might be tokenized differently depending on context—"bank" as a financial institution vs. a river bank.</p>
+            <h3>Adaptive Tokenization</h3>
 
 Rather than using fixed vocabularies, future systems could adapt tokenization in real-time:
 
