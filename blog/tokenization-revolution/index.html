@@ -271,33 +271,20 @@
                 <li><strong>Tokenization Process</strong>: The text gets broken down into tokens</li>
                 <li><strong>Possible Token Breakdown</strong>: <ul>
                     <li><code>["Hello", ",", " world", "!"] (word-level)</code></li>
-                    <li><code></code>["Hel", "lo", ",", " wor", "ld", "!"] (subword-level)</li>
+                    <li><code>["Hel", "lo", ",", " wor", "ld", "!"] (subword-level)</code></li>
                     <li><code>["H", "e", "l", "l", "o", ",", " ", "w", "o", "r", "l", "d", "!"] (character-level)</code></li>
                 </ul></li>
             </ol>
-1. **Raw Text**: "Hello, world!"
-2. **Tokenization Process**: The text gets broken down into tokens
-3. **Possible Token Breakdown**: 
-   - ["Hello", ",", " world", "!"] (word-level)
-   - ["Hel", "lo", ",", " wor", "ld", "!"] (subword-level)
-   - ["H", "e", "l", "l", "o", ",", " ", "w", "o", "r", "l", "d", "!"] (character-level)
-
-Each approach has trade-offs. Character-level tokenization captures every detail but creates very long sequences. Word-level tokenization is intuitive but struggles with new or rare words. Subword tokenization, the current industry standard, tries to balance both.
-
-## The Current State: How Modern AI Systems Handle Text
-
-### The Dominant Approach: Subword Tokenization
-
-Today's leading AI models, including GPT-4, Claude, and others, primarily use **subword tokenization** methods like Byte-Pair Encoding (BPE) or SentencePiece. Here's how it works:
-
-**Step 1: Learning the Vocabulary**
-The system analyzes massive amounts of text to learn which character combinations appear most frequently. It starts with individual characters and gradually merges the most common pairs.
-
-**Step 2: Building the Token Dictionary**
-This process creates a vocabulary of 50,000-100,000 tokens, ranging from single characters to common words and frequent subword combinations.
-
-**Step 3: Processing New Text**
-When new text arrives, the system breaks it down using this learned vocabulary, always choosing the longest possible tokens from its dictionary.
+            <p>Each approach has trade-offs. Character-level tokenization captures every detail but creates very long sequences. Word-level tokenization is intuitive but struggles with new or rare words. Subword tokenization, the current industry standard, tries to balance both.</p>
+            <h2><span class="emoji">💬</span> The Current State: How Modern AI Systems Handle Text</h2>
+            <h3>The Dominant Approach: Subword Tokenization</h3>
+            <p>Today's leading AI models, including GPT-4, Claude, and others, primarily use <strong>subword tokenization</strong> methods like Byte-Pair Encoding (BPE) or SentencePiece. Here's how it works:</p>
+            <p><strong>Step 1: Learning the Vocabulary</strong></p>
+            <p>The system analyzes massive amounts of text to learn which character combinations appear most frequently. It starts with individual characters and gradually merges the most common pairs.</p>
+            <p><strong>Step 2: Building the Token Dictionary</strong></p>
+            <p>This process creates a vocabulary of 50,000-100,000 tokens, ranging from single characters to common words and frequent subword combinations.</p>
+            <p><strong>Step 3: Processing New Text</strong></p>
+            <p>When new text arrives, the system breaks it down using this learned vocabulary, always choosing the longest possible tokens from its dictionary.</p>
 
 ### Why This Approach Emerged
 
