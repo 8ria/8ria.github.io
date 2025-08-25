@@ -273,12 +273,9 @@ x = 0  # either 0 or 1
 q = superposition(0, 1)  # both 0 and 1 at the same time
 </code></pre>
             <p>Here, <code>q</code> isn’t “wrong” or “undecided”—it’s <em>both possibilities coexisting</em>. The power of this approach is that your program can explore multiple outcomes in parallel, rather than choosing one prematurely.</p>
-
-🔗 **Entanglement: Branches That Know Each Other**
-Quantum entanglement is a phenomenon where two particles become linked—changes to one affect the other instantly, no matter the distance. In programming terms, imagine two variables in separate functions that “know” each other’s state instantaneously.
-
-```python
-# Classical: independent variables
+            <h2><span class="emoji">🔗</span> Entanglement: Branches That Know Each Other</h2>
+            <p>Quantum entanglement is a phenomenon where two particles become linked—changes to one affect the other instantly, no matter the distance. In programming terms, imagine two variables in separate functions that “know” each other’s state instantaneously.</p>
+            <pre><code># Classical: independent variables
 a, b = 0, 1
 a = 1
 print(b)  # still 1
@@ -287,17 +284,12 @@ print(b)  # still 1
 a, b = entangle(superposition(0,1), superposition(0,1))
 measure(a)  # collapse a to 0 or 1
 measure(b)  # b collapses automatically based on entanglement
-```
-
-This is more than just a metaphor. Entanglement allows programs to encode relationships across state spaces that classical systems struggle to handle elegantly.
-
-💥 **Decoherence: The Moment Your Code Chooses**
-Superposition isn’t permanent. The moment you *measure* a qubit—or in programming terms, the moment your code interacts with an external system—it collapses into a definite state. This is called **decoherence**.
-
-Think of it like debugging quantum code: you can let multiple branches exist in theory, but as soon as you print a result, a single outcome manifests. The trick is structuring your logic so that exploration happens *before measurement*, capturing the richness of multiple possibilities.
-
-```python
-# Quantum-style if-statement
+</code></pre>
+            <p>This is more than just a metaphor. Entanglement allows programs to encode relationships across state spaces that classical systems struggle to handle elegantly.</p>
+            <h2><span class="emoji">💥</span> Decoherence: The Moment Your Code Chooses</h2>
+            <p>Superposition isn’t permanent. The moment you <em>measure</em> a qubit—or in programming terms, the moment your code interacts with an external system—it collapses into a definite state. This is called <strong>decoherence</strong>.</p>
+            <p>Think of it like debugging quantum code: you can let multiple branches exist in theory, but as soon as you print a result, a single outcome manifests. The trick is structuring your logic so that exploration happens <em>before measurement</em>, capturing the richness of multiple possibilities.</p>
+            <pre><code># Quantum-style if-statement
 q = superposition(True, False)
 
 with quantum_loop(q) as branch:
@@ -307,14 +299,14 @@ with quantum_loop(q) as branch:
         print("Branch B executed")
 
 # Measurement happens here; only one print is observed, but internally both branches were evaluated.
-```
-
-💡 **Why This Matters for Classical Programmers**
-You don’t need a quantum computer to learn from quantum programming. Thinking in terms of **superposition, entanglement, and decoherence** encourages:
-
-* **Parallel exploration:** Consider multiple solutions simultaneously instead of committing too early.
-* **Relational logic:** Encode relationships between variables and states more explicitly.
-* **Probabilistic thinking:** Accept uncertainty in intermediate steps as a feature, not a bug.
+</code></pre>
+            <h2><span class="emoji">💡</span> Why This Matters for Classical Programmers</h2>
+            <p>You don’t need a quantum computer to learn from quantum programming. Thinking in terms of <strong>superposition, entanglement, and decoherence</strong> encourages:</p>
+            <ul>
+                <li><strong>Parallel exploration</strong>: Consider multiple solutions simultaneously instead of committing too early.</li>
+                <li><strong>Relational logic</strong>: Encode relationships between variables and states more explicitly.</li>
+                <li><strong>Probabilistic thinking</strong>: Accept uncertainty in intermediate steps as a feature, not a bug.</li>
+            </ul>
 
 Imagine AI systems that don’t just follow one algorithm path but evaluate many in superposition, only collapsing to a concrete answer when necessary. This could revolutionize optimization, machine learning, and even creative coding, making programs that reason more like humans—or perhaps like the universe itself.
 
